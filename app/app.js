@@ -4,12 +4,10 @@ const fs = require('fs');
 const io = require('socket.io-client');
 const socket = io.connect('http://localhost:3000');
 
-const readFS = require('./src/alterfile');
-const toUpp = require('./src/alterfile');
-const writFS = require('./src/alterfile');
+const alter = require('../src/alterfile');
 
 const alterFile = (file) => {
-  alterFile.readFS(file)
+  alter.readFS(file)
     .then(data => {
       data = alter.toUpp(data);
       alter.writFS(file, data);
