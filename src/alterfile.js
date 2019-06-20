@@ -1,20 +1,23 @@
 'use strict';
 
 const fs = require('fs');
-const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000');
+
 /**
  * 
  * @param {the file it self} file
  * @desc It uses the FS module to read a file 
  */
-function readFS(file){
-  fs.readFile(file,(error,data) => {
-    if(error){
+function readFile(file){
+  return new Promise((resolve, reject) => {
 
-    } else {
+    fs.readFile(file,(error,data) => {
 
-    }
+      if(error){
+        reject(error);
+      } else {
+        resolve(data);
+      }
+    });
   });
 }
 
@@ -35,13 +38,15 @@ function toUpp(data){
  * @param {*} file
  * @desc after the to uppercase function runs this writes the new data to the file 
  */
-function writeFS(file){
-  fs.writeFile(file, text, (error) => {
-    if(error){
-
-    }else{
-
-    }
+function writeFile(file, text){
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, text, (error) => {
+      if(error){
+        reject(error);
+      }else{
+        resolve();
+      }
+    });
   });
 }
-module.exports = {readFS,toUpp,writeFS};
+module.exports = {readFile,toUpp,writeFile};

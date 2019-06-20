@@ -1,16 +1,14 @@
 'use strict';
 
-const fs = require('fs');
 const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('http://localhost:3001');
 
 /**
- * 
  * @param {} payload
  * @desc console logs the payload that has been saved 
  */
 let saveLog = payload => {
-  console.table('Saved', payload);
+  console.log('Saved:', payload);
 }
 
 /**

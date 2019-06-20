@@ -1,18 +1,15 @@
 'use strict';
 
-const fs = require('fs');
-const io = require('socket.io-client');
-const socket = io.connect('http://localhost:3000');
-
 const alter = require('../src/alterfile');
+const io = require('socket.io-client');
+const socket = io.connect('http://localhost:3001');
 
 const alterFile = (file) => {
-  alter.readFS(file)
+  alter.readFile(file)
     .then(data => {
-      data = alter.toUpp(data);
-      alter.writFS(file, data);
+      alter.writeFile(file, alter.toUpp(data));
+      socket.emit('file-save', file);
     })
-    .then (() => socket.emit('file-save', file) && socket.disconnect(true), 500)
     .catch(err => socket.emit('file-error'), 500);
 }
 
