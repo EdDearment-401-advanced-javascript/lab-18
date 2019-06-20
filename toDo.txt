@@ -1,4 +1,0 @@
-Sat:
-CC
-Sun
-Labs
