@@ -11,7 +11,7 @@ const alterFile = (file) => {
       socket.emit('file-save', file);
     })
     .catch(err => socket.emit('file-error'), 500);
-}
+};
 
 
 // const alterFile = (file) => {

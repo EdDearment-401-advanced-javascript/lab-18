@@ -9,7 +9,7 @@ const socket = io.connect('http://localhost:3001');
  */
 let saveLog = payload => {
   console.log('Saved:', payload);
-}
+};
 
 /**
  * @desc console logs an error message
